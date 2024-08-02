@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  backend:
+    ports:
+      - "8091:8080"
+    build: .
+    networks:
+      - app-network
+    depends_on:
+      - database
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+
+  database:
+    container_name: database
+    image: postgres:latest
+    restart: unless-stopped
+    environment:
+      - POSTGRES_DB=_core
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=password
+    ports:
+      - "5433:5432"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
