@@ -1,0 +1,27 @@
+version: '2'
+
+services:
+  database:
+    container_name: database
+    image: postgres:latest
+    restart: unless-stopped
+    environment:
+      - POSTGRES_DB=_core
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=password
+    ports:
+      - 5433:5432
+    networks:
+      - app-network
+  backend:
+    networks:
+      - app-network
+    ports:
+      - 8091:8080
+    build: .
+    depends_on:
+      - database
+
+networks:
+  app-network:
+    driver: bridge
