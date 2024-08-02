@@ -104,7 +104,7 @@ public class ApplicationConfig {
 
   @Bean
   public ECKey ecJwk() throws IOException, ParseException {
-    try (var in = new FileInputStream(ResourceUtils.getFile("classpath:key/ES512.json"))) {
+    try (var in = new FileInputStream("/opt/key/ES512.json")) {  
       return ECKey.parse(new String(in.readAllBytes(), StandardCharsets.UTF_8));
     }
   }

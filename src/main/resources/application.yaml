@@ -2,12 +2,12 @@
 --- # Application
 #-----------------------------------
 
-server:
-  port: 9091
+# server:
+#   port: 8091
 
-spring:
-  profiles:
-    active: default
+# spring:
+#   profiles:
+#     active: default
 
 #-----------------------------------
 --- # Database H2
@@ -60,9 +60,9 @@ spring:
       on-profile: prod
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/notes-app
+    url: jdbc:postgresql://database:5432/_core
     driver-class-name: org.postgresql.Driver
-    username: user
+    username: admin
     password: password
   jpa:
     hibernate:
